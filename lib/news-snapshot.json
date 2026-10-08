@@ -1,0 +1,146 @@
+{
+  "yakup": {
+    "id": "yakup",
+    "name": "약업신문",
+    "url": "https://www.yakup.com/",
+    "articles": [
+      {
+        "title": "LSK인베가 꼽은 바이오헬스 투자유치 4원칙 ‘3P·선제 펀딩·사람·엑시트’",
+        "url": "https://www.yakup.com/news/index.html?mode=view&nid=332908"
+      },
+      {
+        "title": "제약바이오, 수출 성장세 뚜렷…글로벌 신약개발은 장기화·성공률 하락",
+        "url": "https://www.yakup.com/news/index.html?mode=view&cat=12&nid=332915"
+      },
+      {
+        "title": "GLP-1과 실명, 위험은 얼마나 확인됐나",
+        "url": "https://www.yakup.com/news/index.html?mode=view&cat=12&nid=332868"
+      },
+      {
+        "title": "총궐기 마친 약사회, 약 배송 저지 '2라운드'…후속 투쟁 로드맵은",
+        "url": "https://www.yakup.com/news/index.html?mode=view&cat=17&nid=332869"
+      },
+      {
+        "title": "삼양바이오팜, RNA·유전자치료제 키운다…'SENS 플랫폼' 반복투여 장벽 해결",
+        "url": "https://www.yakup.com/news/index.html?mode=view&cat=12&nid=332871"
+      },
+      {
+        "title": "에이엔제이사이언스, ‘항생제는 돈 안 된다’ 통념 깬다…호주 1상 추진",
+        "url": "https://www.yakup.com/news/index.html?mode=view&cat=12&nid=332870"
+      },
+      {
+        "title": "케이바이오솔루션, FDA 허가용 의료기기 동물시험 5건 계약…CRO 사업 확대",
+        "url": "https://www.yakup.com/news/index.html?mode=view&cat=12&nid=332872"
+      },
+      {
+        "title": "보령,중국 이판과 '탁소텔' 7년 공급계약...총 3800억원 규모",
+        "url": "https://www.yakup.com/news/index.html?mode=view&cat=12&nid=332901"
+      },
+      {
+        "title": "[영상] 한국유나이티드제약, 상반기 순익 516억 ‘어닝 서프라이즈’",
+        "url": "https://www.yakup.com/news/index.html?mode=view&cat=12&nid=332723"
+      },
+      {
+        "title": "[영상] 아주약품, 첫 자체 신약 품목허가 획득",
+        "url": "https://www.yakup.com/news/index.html?mode=view&cat=12&nid=332396"
+      }
+    ],
+    "updatedAt": "2026-09-22T07:33:33.825Z"
+  },
+  "medipana": {
+    "id": "medipana",
+    "name": "메디파나뉴스",
+    "url": "https://www.medipana.com/",
+    "articles": [
+      {
+        "title": "80개국 뚫은 클래시스, 해외 몸집 키우고 수익성 숨 고르기",
+        "url": "https://www.medipana.com/news/articleView.html?idxno=418065"
+      },
+      {
+        "title": "휴젤, 美 판매 운전대 직접 잡는다…재고 되사고 직판 승부",
+        "url": "https://www.medipana.com/news/articleView.html?idxno=418116"
+      },
+      {
+        "title": "리가켐바이오, 대형 마일스톤 공백에도 임상 직진…R&D 2배↑",
+        "url": "https://www.medipana.com/news/articleView.html?idxno=418064"
+      },
+      {
+        "title": "95개 상장 제약바이오, 상반기 R&D 2조 돌파…전년比 14%↑",
+        "url": "https://www.medipana.com/news/articleView.html?idxno=417681"
+      },
+      {
+        "title": "상반기 제약·바이오 R&D 인력 9170명…비중 15% 유지",
+        "url": "https://www.medipana.com/news/articleView.html?idxno=417208"
+      },
+      {
+        "title": "길리어드 사이언스 코리아 15주년…\"성장 동력은 도전\"",
+        "url": "https://www.medipana.com/news/articleView.html?idxno=418127"
+      },
+      {
+        "title": "유한양행, 레이저티닙 처방 확대…기술이전·API 수주 주목",
+        "url": "https://www.medipana.com/news/articleView.html?idxno=417229"
+      },
+      {
+        "title": "씨어스, 병상 확대에 해외 매출 더한다…내년 수출 본격화",
+        "url": "https://www.medipana.com/news/articleView.html?idxno=418114"
+      },
+      {
+        "title": "씨어스, 두바이 심혈관 학술행사서 AI 모니터링 기술 소개",
+        "url": "https://www.medipana.com/news/articleView.html?idxno=417574"
+      },
+      {
+        "title": "보령, 탁소텔 인수 첫 대형계약…中서 3837억 수주",
+        "url": "https://www.medipana.com/news/articleView.html?idxno=418112"
+      }
+    ],
+    "updatedAt": "2026-09-22T07:33:33.827Z"
+  },
+  "kpanews": {
+    "id": "kpanews",
+    "name": "약사공론",
+    "url": "https://www.kpanews.co.kr/",
+    "articles": [
+      {
+        "title": "약사면허 빌려 9년간 약국 운영…징역형에 3억대 환수",
+        "url": "https://www.kpanews.co.kr/news/articleView.html?idxno=544656"
+      },
+      {
+        "title": "\"면대약국 신고하세요\"…건보공단, 불법기관 포상금 최대 30억",
+        "url": "https://www.kpanews.co.kr/news/articleView.html?idxno=544496"
+      },
+      {
+        "title": "불법개설기관 가장 많은 곳 '경기' 시군구 '경남 양산'",
+        "url": "https://www.kpanews.co.kr/news/articleView.html?idxno=544625"
+      },
+      {
+        "title": "[영상] 전국 약사 총궐기 대회 현장 발언 모음",
+        "url": "https://www.kpanews.co.kr/news/articleView.html?idxno=544589"
+      },
+      {
+        "title": "[영상] '단결의 힘'보여줬다...광화문 달군 약사·약대생",
+        "url": "https://www.kpanews.co.kr/news/articleView.html?idxno=544552"
+      },
+      {
+        "title": "[영상] \"국민건강 혁신 실험대상 아냐\" 약사, 약대생 성토",
+        "url": "https://www.kpanews.co.kr/news/articleView.html?idxno=544440"
+      },
+      {
+        "title": "약배송 비대위 \"약배송 확대 철회는 절대조건\"",
+        "url": "https://www.kpanews.co.kr/news/articleView.html?idxno=544583"
+      },
+      {
+        "title": "지텍정, 내달 급여 등재…'급·만성 위염 위점막 병변 개선' 기준 신설",
+        "url": "https://www.kpanews.co.kr/news/articleView.html?idxno=544655"
+      },
+      {
+        "title": "대웅바이오 '람노바' 허가, 공급 재개 람노스와 경쟁 예고",
+        "url": "https://www.kpanews.co.kr/news/articleView.html?idxno=544654"
+      },
+      {
+        "title": "국회의 인슐린펌프·CGM 관심 \"약국가로 온기 퍼질까\"",
+        "url": "https://www.kpanews.co.kr/news/articleView.html?idxno=544646"
+      }
+    ],
+    "updatedAt": "2026-09-22T07:33:33.827Z"
+  }
+}
