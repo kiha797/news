@@ -1,9 +1,9 @@
 'use client';
 
-import {useEffect, useMemo, useState} from 'react';
-import {ArrowRight, ArrowUpRight, Bookmark, BookmarkCheck, Newspaper, ShieldCheck, Pill, Landmark, Truck, Radio, RefreshCw, Search, X} from 'lucide-react';
+import {Fragment, useEffect, useMemo, useState} from 'react';
+import {ArrowRight, ArrowUpRight, Bookmark, BookmarkCheck, Newspaper, Radio, RefreshCw, Search, X} from 'lucide-react';
 import snapshots from '@/lib/news-snapshot.json';
-import {AdSpace} from '@/components/ad-space';
+import {BaropharmTrend} from '@/components/baropharm-trend';
 
 type Article = {title:string; url:string; image?:string};
 type Feed = {id:string; name:string; url:string; articles:Article[]; updatedAt?:string; stale?:boolean};
@@ -15,12 +15,6 @@ const sources=[
   {id:'kpanews',name:'약사공론',url:'https://www.kpanews.co.kr/',domain:'KPANEWS.CO.KR',letter:'약',color:'#a15128'},
   {id:'dailypharm',name:'데일리팜',url:'https://www.dailypharm.com/',domain:'DAILYPHARM.COM',letter:'D',color:'#b52f42'},
   {id:'hitnews',name:'히트뉴스',url:'https://www.hitnews.co.kr/',domain:'HITNEWS.CO.KR',letter:'H',color:'#5a48a5'},
-];
-const resources=[
- {name:'의약품안전나라',purpose:'제품 허가 · 회수 · 판매중지',detail:'제품명으로 허가사항과 안전 정보를 확인하세요.',url:'https://nedrug.mfds.go.kr/',icon:Pill,color:'#247a68'},
- {name:'건강보험심사평가원',purpose:'약제 급여 · 약가 관련 공지',detail:'급여기준과 약제 관련 공지를 확인하세요.',url:'https://www.hira.or.kr/main.do',icon:Landmark,color:'#3468b0'},
- {name:'식품의약품안전처',purpose:'안전 · 행정 · 정책 공지',detail:'의약품 고시와 행정 공지를 확인하세요.',url:'https://www.mfds.go.kr/',icon:ShieldCheck,color:'#a66030'},
- {name:'한국의약품유통협회',purpose:'유통업계 공지 · 교육',detail:'협회 공지와 KGSP 교육 정보를 확인하세요.',url:'https://www.kpda.kr/',icon:Truck,color:'#7252a9'},
 ];
 const categories:Category[]=['전체','정책·보험','제약·바이오','유통·약국'];
 const interestWords=['약가인하','품절','공급중단','유통','배송','반품','3PL','의약품','약국'];
@@ -107,12 +101,11 @@ export default function Home(){
         <div className="filter-row"><div className="category-tabs">{categories.map(item=><button key={item} className={category===item?'active':''} onClick={()=>setCategory(item)}>{item}</button>)}</div><button className={`saved-filter ${savedOnly?'active':''}`} onClick={()=>setSavedOnly(v=>!v)}><Bookmark size={16}/><span>보관함</span><b>{bookmarks.length}</b></button></div>
         <div className="keyword-guide"><span>관심 키워드</span>{interestWords.map(word=><button key={word} onClick={()=>setQuery(word)} className={query===word?'active':''}>{word}</button>)}</div>
       </section>
-      <AdSpace placement="top" />
       <div className="news-toolbar"><div><Radio size={17}/><strong>5개 매체 · 메인 TOP 10</strong><span className="count">{busy?'확인 중':(shown===total?`${total}개 기사`:`${shown}개 검색됨`)}</span></div><span className="order-note">메인 노출 순서 · 조회수 순위 아님 · 원문 연결 <ArrowUpRight size={14}/></span></div>
       {shown===0&&!busy&&<div className="global-empty"><Search size={27}/><strong>조건에 맞는 기사가 없습니다.</strong><span>검색어나 분류를 바꿔보세요.</span><button onClick={()=>{setQuery('');setCategory('전체');setSavedOnly(false)}}>전체 기사 보기</button></div>}
-      <div className="columns">{sources.map(s=>{
+      <div className="columns">{[...sources.filter(s=>s.id!=='kpanews'),...sources.filter(s=>s.id==='kpanews')].map((s,index)=>{
         const feed=feeds[s.id]; const articles=visible[s.id] as Article[];
-        return <section id={`source-${s.id}`} className={`news-column ${shown===0?'hidden-column':''}`} key={s.id} style={{'--source':s.color} as React.CSSProperties}>
+        return <Fragment key={s.id}>{index===2&&<BaropharmTrend/>}<section id={`source-${s.id}`} className={`news-column ${shown===0?'hidden-column':''}`} key={s.id} style={{'--source':s.color} as React.CSSProperties}>
           <div className="source-heading"><div className="source-identity"><span className="source-mark">{s.letter}</span><div><h2>{s.name}</h2><span className="domain">{s.domain}</span></div></div><a href={s.url} target="_blank" rel="noopener noreferrer" className="source-link" aria-label={`${s.name} 홈페이지 열기`}><ArrowUpRight size={20}/></a></div>
           {articles[0]&&<a href={articles[0].url} target="_blank" rel="noopener noreferrer" className="column-image"><ArticleImage article={articles[0]} source={s}/></a>}
           <div className="source-status"><span>{articles.length} HEADLINES</span><span className={feed?.stale?'status-delayed':'status-current'}>{feed?.updatedAt?new Intl.DateTimeFormat('ko-KR',{timeZone:'Asia/Seoul',month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit',hour12:false}).format(new Date(feed.updatedAt))+(feed.stale?' 마지막 확인':' 최신 확인'):busy?'확인 중':'연결 확인 필요'}</span></div>
@@ -122,15 +115,9 @@ export default function Home(){
             return <li key={a.url} className={j===0?'lead':''}><div className="article-row"><a href={a.url} target="_blank" rel="noopener noreferrer"><span className="rank">{String(j+1).padStart(2,'0')}</span><div className="article-copy"><div className="article-meta">{j===0&&<span className="lead-label">주요 기사</span>}{isNew&&<span className="new-label">NEW</span>}<span className="category-label">{categoryOf(a.title)}</span></div><h3><Highlight title={a.title}/></h3></div><ArrowUpRight className="article-arrow" size={16}/></a><button className={`bookmark-button ${saved?'saved':''}`} onClick={()=>toggleBookmark(a.url)} aria-label={saved?'보관함에서 삭제':'기사 보관'} title={saved?'보관함에서 삭제':'기사 보관'}>{saved?<BookmarkCheck size={18}/>:<Bookmark size={18}/>}</button></div></li>
           })}</ol>}
           <a className="all-news" href={s.url} target="_blank" rel="noopener noreferrer">{s.name} 전체 뉴스 <ArrowRight size={16}/></a>
-        </section>;
+        </section></Fragment>;
       })}
-      <aside className="resource-card" aria-label="약업 실무 바로가기">
-        <div className="resource-heading"><span className="resource-badge"><ShieldCheck size={23}/></span><div><h2>약업 실무 바로가기</h2><p>공식 정보 확인</p></div></div>
-        <div className="resource-links">{resources.map(item=><a key={item.name} href={item.url} target="_blank" rel="noopener noreferrer" style={{'--resource':item.color} as React.CSSProperties}><span className="resource-icon"><item.icon size={23}/></span><div><span className="resource-purpose">{item.purpose}</span><h3>{item.name}</h3><p>{item.detail}</p></div><ArrowUpRight size={17} className="resource-external"/></a>)}</div>
-        <div className="resource-note">제품·회수·급여 정보는 해당 기관의 최신 공지와 시행일을 확인하세요.</div>
-      </aside>
       </div>
-      <AdSpace placement="bottom" />
       <footer><span className="footer-brand">PHARMA DESK</span><p>기사 제목을 선택하면 해당 언론사의 원문이 열립니다. 기사 저작권은 각 언론사에 있습니다.</p><span>5 SOURCES. ONE DESK.</span></footer>
     </main>
   </div>;
