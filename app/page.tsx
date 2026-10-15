@@ -107,9 +107,9 @@ export default function Home(){
       </section>
       <div className="news-toolbar"><div><Radio size={17}/><strong>5개 매체 · 메인 TOP 10</strong><span className="count">{busy?'확인 중':(shown===total?`${total}개 기사`:`${shown}개 검색됨`)}</span></div><span className="order-note">메인 노출 순서 · 조회수 순위 아님 · 원문 연결 <ArrowUpRight size={14}/></span></div>
       {shown===0&&!busy&&<div className="global-empty"><Search size={27}/><strong>조건에 맞는 기사가 없습니다.</strong><span>검색어나 분류를 바꿔보세요.</span><button onClick={()=>{setQuery('');setCategory('전체');setSavedOnly(false)}}>전체 기사 보기</button></div>}
-      <div className="columns">{[...sources.filter(s=>s.id!=='kpanews'),...sources.filter(s=>s.id==='kpanews')].map((s,index)=>{
+      <div className="columns">{sources.map(s=>{
         const feed=feeds[s.id]; const articles=visible[s.id] as Article[];
-        return <Fragment key={s.id}>{index===2&&<BaropharmTrend/>}<section id={`source-${s.id}`} className={`news-column ${shown===0?'hidden-column':''}`} key={s.id} style={{'--source':s.color} as React.CSSProperties}>
+        return <Fragment key={s.id}><section id={`source-${s.id}`} className={`news-column ${shown===0?'hidden-column':''}`} key={s.id} style={{'--source':s.color} as React.CSSProperties}>
           <div className="source-heading"><div className="source-identity"><span className="source-mark">{s.letter}</span><div><h2>{s.name}</h2><span className="domain">{s.domain}</span></div></div><a href={s.url} target="_blank" rel="noopener noreferrer" className="source-link" aria-label={`${s.name} 홈페이지 열기`}><ArrowUpRight size={20}/></a></div>
           {articles[0]&&<a href={articles[0].url} target="_blank" rel="noopener noreferrer" className="column-image"><ArticleImage article={articles[0]} source={s}/></a>}
           <div className="source-status"><span>{articles.length} HEADLINES</span><span className={feed?.stale?'status-delayed':'status-current'}>{feed?.updatedAt?new Intl.DateTimeFormat('ko-KR',{timeZone:'Asia/Seoul',month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit',hour12:false}).format(new Date(feed.updatedAt))+(feed.stale?' 마지막 확인':' 최신 확인'):busy?'확인 중':'연결 확인 필요'}</span></div>
@@ -121,6 +121,7 @@ export default function Home(){
           <a className="all-news" href={s.url} target="_blank" rel="noopener noreferrer">{s.name} 전체 뉴스 <ArrowRight size={16}/></a>
         </section></Fragment>;
       })}
+      <BaropharmTrend/>
       </div>
       <footer><span className="footer-brand">PHARMA DESK</span><p>기사 제목을 선택하면 해당 언론사의 원문이 열립니다. 기사 저작권은 각 언론사에 있습니다.</p><span>5 SOURCES. ONE DESK.</span></footer>
     </main>
