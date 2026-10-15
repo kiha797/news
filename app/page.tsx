@@ -94,9 +94,9 @@ export default function Home(){
   const shown=Object.values(visible).reduce((n,items)=>n+(items as Article[]).length,0);
 
   return <div className="shell">
-    <header className="masthead"><a href="/" className="brand"><span className="brand-icon"><Newspaper size={23}/></span><span>PHARMA<span className="brand-light"> DESK</span></span></a><span className="edition">PHARMACEUTICAL NEWS BRIEFING</span><span className="header-label">약업계 뉴스 모아보기</span></header>
+
     <main>
-      <section className="intro"><div><div className="eyebrow"><span/> DAILY NEWSROOM</div><h1>오늘의 약업 뉴스</h1><p>약업신문 · 메디파나뉴스 · 약사공론 · 데일리팜 · 히트뉴스의 주요 기사를 모았습니다.</p></div><div className="intro-actions"><span className="date">{date}</span><button onClick={refresh} disabled={busy}><RefreshCw size={16} className={busy?'spin':''}/>{busy?'뉴스 확인 중':'새로고침'}</button></div></section>
+      <section className="intro"><div><div className="eyebrow"><span/> DAILY NEWSROOM</div><h1>오늘의 약업 뉴스</h1></div><div className="intro-actions"><span className="date">{date}</span><button onClick={refresh} disabled={busy}><RefreshCw size={16} className={busy?'spin':''}/>{busy?'뉴스 확인 중':'새로고침'}</button></div></section>
       <section className="control-panel" aria-label="기사 검색 및 분류">
         <NewsBriefing articles={sources.flatMap(s=>{const a=(visible[s.id] as Article[])[0];return a?[{...a,source:s.name,color:s.color,stale:feeds[s.id]?.stale}]:[]})}/>
       </section>
