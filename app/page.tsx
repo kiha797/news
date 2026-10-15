@@ -4,6 +4,7 @@ import {Fragment, useEffect, useMemo, useState} from 'react';
 import {ArrowRight, ArrowUpRight, Bookmark, BookmarkCheck, Newspaper, Radio, RefreshCw, Search, X} from 'lucide-react';
 import snapshots from '@/lib/news-snapshot.json';
 import {NewsBriefing} from '@/components/news-briefing';
+import {TodayVisitors} from '@/components/today-visitors';
 
 type Article = {title:string; url:string; image?:string};
 type Feed = {id:string; name:string; url:string; articles:Article[]; updatedAt?:string; stale?:boolean};
@@ -118,6 +119,7 @@ export default function Home(){
       })}
       </div>
       <footer><span className="footer-brand">PHARMA DESK</span><p>기사 제목을 선택하면 해당 언론사의 원문이 열립니다. 기사 저작권은 각 언론사에 있습니다.</p><span>6 SOURCES. ONE DESK.</span></footer>
+      <TodayVisitors/>
     </main>
   </div>;
 }
