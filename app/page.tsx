@@ -4,7 +4,6 @@ import {Fragment, useEffect, useMemo, useState} from 'react';
 import {ArrowRight, ArrowUpRight, Bookmark, BookmarkCheck, Newspaper, Radio, RefreshCw, Search, X} from 'lucide-react';
 import snapshots from '@/lib/news-snapshot.json';
 import {NewsBriefing} from '@/components/news-briefing';
-import {BaropharmTrend} from '@/components/baropharm-trend';
 
 type Article = {title:string; url:string; image?:string};
 type Feed = {id:string; name:string; url:string; articles:Article[]; updatedAt?:string; stale?:boolean};
@@ -16,6 +15,7 @@ const sources=[
   {id:'kpanews',name:'약사공론',url:'https://www.kpanews.co.kr/',domain:'KPANEWS.CO.KR',letter:'약',color:'#a15128'},
   {id:'dailypharm',name:'데일리팜',url:'https://www.dailypharm.com/',domain:'DAILYPHARM.COM',letter:'D',color:'#b52f42'},
   {id:'hitnews',name:'히트뉴스',url:'https://www.hitnews.co.kr/',domain:'HITNEWS.CO.KR',letter:'H',color:'#5a48a5'},
+  {id:'bosa',name:'의학신문',url:'https://www.bosa.co.kr/',domain:'BOSA.CO.KR',letter:'의',color:'#187f91'},
 ];
 const categories:Category[]=['전체','정책·보험','제약·바이오','유통·약국'];
 const interestWords=['약가인하','품절','공급중단','유통','배송','반품','3PL','의약품','약국'];
@@ -100,7 +100,7 @@ export default function Home(){
       <section className="control-panel" aria-label="기사 검색 및 분류">
         <NewsBriefing relatedArticles={sources.flatMap(s=>(feeds[s.id]?.articles??[]).map(a=>({...a,source:s.name,stale:feeds[s.id]?.stale,updatedAt:feeds[s.id]?.updatedAt})))} articles={sources.flatMap(s=>{const a=(visible[s.id] as Article[])[0];return a?[{...a,source:s.name,color:s.color,stale:feeds[s.id]?.stale}]:[]})}/>
       </section>
-      <div className="news-toolbar"><div><Radio size={17}/><strong>5개 매체 · 메인 TOP 10</strong><span className="count">{busy?'확인 중':(shown===total?`${total}개 기사`:`${shown}개 검색됨`)}</span></div><span className="order-note">메인 노출 순서 · 조회수 순위 아님 · 원문 연결 <ArrowUpRight size={14}/></span></div>
+      <div className="news-toolbar"><div><Radio size={17}/><strong>6개 매체 · 메인 TOP 10</strong><span className="count">{busy?'확인 중':(shown===total?`${total}개 기사`:`${shown}개 검색됨`)}</span></div><span className="order-note">메인 노출 순서 · 조회수 순위 아님 · 원문 연결 <ArrowUpRight size={14}/></span></div>
       {shown===0&&!busy&&<div className="global-empty"><Search size={27}/><strong>조건에 맞는 기사가 없습니다.</strong><span>검색어나 분류를 바꿔보세요.</span><button onClick={()=>{setQuery('');setCategory('전체');setSavedOnly(false)}}>전체 기사 보기</button></div>}
       <div className="columns">{sources.map(s=>{
         const feed=feeds[s.id]; const articles=visible[s.id] as Article[];
@@ -116,9 +116,8 @@ export default function Home(){
           <a className="all-news" href={s.url} target="_blank" rel="noopener noreferrer">{s.name} 전체 뉴스 <ArrowRight size={16}/></a>
         </section></Fragment>;
       })}
-      <BaropharmTrend/>
       </div>
-      <footer><span className="footer-brand">PHARMA DESK</span><p>기사 제목을 선택하면 해당 언론사의 원문이 열립니다. 기사 저작권은 각 언론사에 있습니다.</p><span>5 SOURCES. ONE DESK.</span></footer>
+      <footer><span className="footer-brand">PHARMA DESK</span><p>기사 제목을 선택하면 해당 언론사의 원문이 열립니다. 기사 저작권은 각 언론사에 있습니다.</p><span>6 SOURCES. ONE DESK.</span></footer>
     </main>
   </div>;
 }

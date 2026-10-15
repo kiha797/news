@@ -278,5 +278,60 @@
       }
     ],
     "updatedAt": "2026-10-09T10:42:42.587Z"
+  },
+  "bosa": {
+    "id": "bosa",
+    "name": "의학신문",
+    "url": "https://www.bosa.co.kr/",
+    "articles": [
+      {
+        "title": "의협, 소아응급센터 압수수색 강력 규탄...“진료 방해 수사 재발 막아야”",
+        "url": "https://www.bosa.co.kr/news/articleView.html?idxno=3014005",
+        "image": "https://cdn.bosa.co.kr/news/thumbnail/custom/20261015/3014005_414906_85_1792033687_310.jpg"
+      },
+      {
+        "title": "당뇨병학회, 당뇨 기기 지원 요양급여 단계적 전환 방안 정부에 제안",
+        "url": "https://www.bosa.co.kr/news/articleView.html?idxno=3014006",
+        "image": "https://cdn.bosa.co.kr/news/thumbnail/custom/20261015/3014006_414912_3238_1792035158_180.jpg"
+      },
+      {
+        "title": "아동·청소년 SNS 중독 ‘플랫폼 책임’ 규제 전환 촉구",
+        "url": "https://www.bosa.co.kr/news/articleView.html?idxno=3014003",
+        "image": "https://cdn.bosa.co.kr/news/thumbnail/custom/20261015/3014003_414905_058_1792033258_180.jpg"
+      },
+      {
+        "title": "물 다량소비 시설 적정 관리 나선다",
+        "url": "https://www.bosa.co.kr/news/articleView.html?idxno=3013960",
+        "image": "https://cdn.bosa.co.kr/news/photo/202610/3013960_414862_4639.jpg"
+      },
+      {
+        "title": "친환경 가방 다시 쓰고 잔반 줄이고...",
+        "url": "https://www.bosa.co.kr/news/articleView.html?idxno=3013959",
+        "image": "https://cdn.bosa.co.kr/news/thumbnail/custom/20261015/3013959_414861_4056_1792021258_140.jpg"
+      },
+      {
+        "title": "미 中 이중특이 항암 항체 신속심사",
+        "url": "https://www.bosa.co.kr/news/articleView.html?idxno=3013795"
+      },
+      {
+        "title": "미 소아 자폐 진단 AI 승인",
+        "url": "https://www.bosa.co.kr/news/articleView.html?idxno=3013789",
+        "image": "https://cdn.bosa.co.kr/news/thumbnail/custom/20261015/3013789_414694_5639_1791856599_140.jpg"
+      },
+      {
+        "title": "미 제네릭·바이오시밀러 지속가능성 ‘위협’",
+        "url": "https://www.bosa.co.kr/news/articleView.html?idxno=3013754"
+      },
+      {
+        "title": "PMC박병원 박진규 이사장, 대한신경통증학회장 취임",
+        "url": "https://www.bosa.co.kr/news/articleView.html?idxno=3014000"
+      },
+      {
+        "title": "경상국립대병원, 2026년도 책임의료기관 심포지엄 개최",
+        "url": "https://www.bosa.co.kr/news/articleView.html?idxno=3013999",
+        "image": "https://cdn.bosa.co.kr/news/photo/202610/3013999_414903_550.jpg"
+      }
+    ],
+    "updatedAt": "2026-10-15T03:35:36.181Z"
   }
 }
