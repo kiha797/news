@@ -99,11 +99,6 @@ export default function Home(){
       <section className="intro"><div><div className="eyebrow"><span/> DAILY NEWSROOM</div><h1>오늘의 약업 뉴스</h1><p>약업신문 · 메디파나뉴스 · 약사공론 · 데일리팜 · 히트뉴스의 주요 기사를 모았습니다.</p></div><div className="intro-actions"><span className="date">{date}</span><button onClick={refresh} disabled={busy}><RefreshCw size={16} className={busy?'spin':''}/>{busy?'뉴스 확인 중':'새로고침'}</button></div></section>
       <section className="control-panel" aria-label="기사 검색 및 분류">
         <NewsBriefing articles={sources.flatMap(s=>{const a=(visible[s.id] as Article[])[0];return a?[{...a,source:s.name,color:s.color,stale:feeds[s.id]?.stale}]:[]})}/>
-        <div className="brief-existing-controls">
-        <div className="search-box"><Search size={19}/><input value={query} onChange={e=>setQuery(e.target.value)} placeholder="회사명, 제품명, 정책을 검색하세요" aria-label="전체 기사 검색"/>{query&&<button className="clear-search" onClick={()=>setQuery('')} aria-label="검색어 지우기"><X size={17}/></button>}</div>
-        <div className="filter-row"><div className="category-tabs">{categories.map(item=><button key={item} className={category===item?'active':''} onClick={()=>setCategory(item)}>{item}</button>)}</div><button className={`saved-filter ${savedOnly?'active':''}`} onClick={()=>setSavedOnly(v=>!v)}><Bookmark size={16}/><span>보관함</span><b>{bookmarks.length}</b></button></div>
-        <div className="keyword-guide"><span>관심 키워드</span>{interestWords.map(word=><button key={word} onClick={()=>setQuery(word)} className={query===word?'active':''}>{word}</button>)}</div>
-        </div>
       </section>
       <div className="news-toolbar"><div><Radio size={17}/><strong>5개 매체 · 메인 TOP 10</strong><span className="count">{busy?'확인 중':(shown===total?`${total}개 기사`:`${shown}개 검색됨`)}</span></div><span className="order-note">메인 노출 순서 · 조회수 순위 아님 · 원문 연결 <ArrowUpRight size={14}/></span></div>
       {shown===0&&!busy&&<div className="global-empty"><Search size={27}/><strong>조건에 맞는 기사가 없습니다.</strong><span>검색어나 분류를 바꿔보세요.</span><button onClick={()=>{setQuery('');setCategory('전체');setSavedOnly(false)}}>전체 기사 보기</button></div>}
