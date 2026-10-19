@@ -69,6 +69,14 @@ export default function Home(){
     setDate(new Intl.DateTimeFormat('ko-KR',{timeZone:'Asia/Seoul',year:'numeric',month:'long',day:'numeric',weekday:'long'}).format(new Date()));
     try{setBookmarks(JSON.parse(localStorage.getItem('pharma-bookmarks')||'[]'));}catch{}
     void refresh();
+    const timer=setInterval(()=>{
+      if(document.visibilityState!=='visible') return;
+      setDate(new Intl.DateTimeFormat('ko-KR',{timeZone:'Asia/Seoul',year:'numeric',month:'long',day:'numeric',weekday:'long'}).format(new Date()));
+      void refresh();
+    },10*60*1000);
+    const onVisible=()=>{if(document.visibilityState==='visible') void refresh()};
+    document.addEventListener('visibilitychange',onVisible);
+    return ()=>{clearInterval(timer);document.removeEventListener('visibilitychange',onVisible)};
   },[]);
 
   useEffect(()=>{
@@ -101,7 +109,7 @@ export default function Home(){
       <section className="control-panel" aria-label="기사 검색 및 분류">
         <NewsBriefing relatedArticles={sources.flatMap(s=>(feeds[s.id]?.articles??[]).map(a=>({...a,source:s.name,stale:feeds[s.id]?.stale,updatedAt:feeds[s.id]?.updatedAt})))} articles={sources.flatMap(s=>{const [a,...secondary]=(visible[s.id] as Article[]).slice(0,3);return a?[{...a,source:s.name,color:s.color,stale:feeds[s.id]?.stale,secondary}]:[]})}/>
       </section>
-      <div className="news-toolbar"><div><Radio size={17}/><strong>6개 매체 · 메인 TOP 10</strong><span className="count">{busy?'확인 중':(shown===total?`${total}개 기사`:`${shown}개 검색됨`)}</span></div><span className="order-note">메인 노출 순서 · 조회수 순위 아님 · 원문 연결 <ArrowUpRight size={14}/></span></div>
+      <div className="news-toolbar"><div><Radio size={17}/><strong>6개 매체 · 메인 뉴스 최대 10건</strong><span className="count">{busy?'확인 중':(shown===total?`${total}개 기사`:`${shown}개 검색됨`)}</span></div><span className="order-note">메인 노출 순서 · 조회수 순위 아님 · 원문 연결 <ArrowUpRight size={14}/></span></div>
       {shown===0&&!busy&&<div className="global-empty"><Search size={27}/><strong>조건에 맞는 기사가 없습니다.</strong><span>검색어나 분류를 바꿔보세요.</span><button onClick={()=>{setQuery('');setCategory('전체');setSavedOnly(false)}}>전체 기사 보기</button></div>}
       <div className="columns">{sources.map(s=>{
         const feed=feeds[s.id]; const articles=visible[s.id] as Article[];
