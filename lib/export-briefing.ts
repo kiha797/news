@@ -16,12 +16,14 @@ export function captureBriefing(element:HTMLElement){
  const left=28,right=720,leftW=640,rightW=650;
  ctx.fillStyle='#182c60';ctx.fillRect(0,0,width,5);
  let ly=heading(content(element.querySelector('.brief-news .brief-heading h2')),left,46,leftW);
- for(const item of element.querySelectorAll('.brief-news-list>a')){
+ for(const item of element.querySelectorAll('.brief-news-list .brief-story')){
   const badge=item.querySelector('.brief-source') as HTMLElement|null;
   ctx.fillStyle=badge?.style.background||'#244373';ctx.fillRect(left,ly-16,115,24);
   text(content(badge),left+6,ly+1,103,14,'#fff',true);ly+=29;
   ly=text(content(item.querySelector('strong')),left,ly,leftW,20,'#1d2b40',true);
-  ly=text(content(item.querySelector('.brief-news-meta')),left,ly+3,leftW,14,'#7a879a');
+  for(const related of item.querySelectorAll('.brief-news-meta a')){
+   ly=text(content(related),left,ly+3,leftW,14,'#7a879a');
+  }
   ctx.strokeStyle='#dce3ed';ctx.beginPath();ctx.moveTo(left,ly);ctx.lineTo(left+leftW,ly);ctx.stroke();ly+=22;
  }
  const policy=element.querySelector('.brief-policy');if(policy){ly=heading(content(policy.querySelector('h3')),left,ly+12,leftW);for(const item of policy.querySelectorAll('a,p'))ly=text(content(item),left+8,ly,leftW-12,16)+8;}
