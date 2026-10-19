@@ -242,4 +242,3 @@ body{background:#f2f5f9;color:#1c293d}.masthead{background:#10243d;color:#fff;bo
 .brief-news-list .brief-news-meta{display:grid;gap:4px;margin-top:5px;font-size:13px;line-height:1.45;color:#7b879b}
 .brief-news-list .brief-news-meta a{display:flex;gap:6px;align-items:baseline;min-width:0;overflow-wrap:anywhere}
 .brief-news-list .brief-news-meta a:hover{color:#2165a9;text-decoration:underline}
-.brief-news-list .brief-news-meta a span{font-size:11px;font-weight:700;color:#a0aabb;flex:none;font-variant-numeric:tabular-nums}
