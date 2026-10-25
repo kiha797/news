@@ -45,3 +45,9 @@ pnpm start
 광고 영역은 현재 ‘광고 준비 중’으로 표시됩니다. 실제 게재에는 발급받은 AdSense 광고 코드를 해당 영역에 연결해야 합니다.
 
 기사 본문은 저장하지 않고 원문 링크를 제공합니다. 뉴스 수집이 실패하면 마지막 확인 기사가 표시됩니다. 보관함과 NEW 정보는 사용 중인 브라우저에만 저장됩니다.
+
+## Cloudflare D1 배포
+
+Sites 로컬 미리보기용 가짜 D1 ID는 Cloudflare 계정에 존재하지 않으므로 배포에 사용할 수 없습니다. 방문자 수 집계를 사용하려면 Cloudflare에서 D1 데이터베이스를 생성하고 `news` Worker의 **빌드 환경 변수** `CLOUDFLARE_D1_DATABASE_ID`에 실제 데이터베이스 UUID를 지정하세요. 첫 배포 전에 `drizzle/0000_flippant_green_goblin.sql`을 해당 D1에 적용합니다. 예: `npx wrangler d1 execute <DB_NAME> --remote --file drizzle/0000_flippant_green_goblin.sql`.
+
+변수가 없으면 D1 바인딩 없이 배포되며 뉴스 기능은 동작하지만 오늘 방문자 수는 `집계 지연`으로 표시됩니다. Sites의 D1 ID를 Cloudflare의 ID처럼 재사용하지 마세요.
