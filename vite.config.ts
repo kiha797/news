@@ -8,6 +8,14 @@ const SITE_CREATOR_PLACEHOLDER_DATABASE_ID =
   "00000000-0000-4000-8000-000000000000";
 
 const { d1, r2 } = hostingConfig;
+const cloudflareD1DatabaseId = process.env.CLOUDFLARE_D1_DATABASE_ID?.trim();
+if (cloudflareD1DatabaseId && !/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/i.test(cloudflareD1DatabaseId)) {
+  throw new Error("CLOUDFLARE_D1_DATABASE_ID must be a D1 database UUID.");
+}
+// The placeholder is only useful for Sites' local preview. Cloudflare must
+// receive a real database ID, or deploy without the optional visitor counter.
+const databaseId = cloudflareD1DatabaseId ||
+  (process.env.SITES_MANAGED_LINUX_CONTAINER === "1" ? SITE_CREATOR_PLACEHOLDER_DATABASE_ID : undefined);
 
 // macOS Seatbelt blocks FSEvents, so Codex previews need polling for HMR.
 const isCodexSeatbeltSandbox = process.env.CODEX_SANDBOX === "seatbelt";
@@ -16,12 +24,12 @@ const managedLinux = readExecutionProfile() === "managed-linux";
 const localBindingConfig = {
   main: "vinext/server/fetch-handler",
   compatibility_flags: ["nodejs_compat"],
-  d1_databases: d1
+  d1_databases: d1 && databaseId
     ? [
         {
           binding: d1,
           database_name: "site-creator-d1",
-          database_id: SITE_CREATOR_PLACEHOLDER_DATABASE_ID,
+          database_id: databaseId,
         },
       ]
     : [],
