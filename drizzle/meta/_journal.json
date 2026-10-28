@@ -8,6 +8,13 @@
       "when": 1792108173875,
       "tag": "0000_flippant_green_goblin",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1792995058323,
+      "tag": "0001_young_shatterstar",
+      "breakpoints": true
     }
   ]
 }

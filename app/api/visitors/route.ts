@@ -22,7 +22,11 @@ export async function POST(request: Request) {
   const db = env.DB;
   if (!db) return Response.json({ error: '방문자 수를 확인할 수 없습니다.' }, { status: 503 });
   try {
-    await db.prepare('INSERT OR IGNORE INTO daily_visitors (day, visitor_id) VALUES (?, ?)').bind(day, visitorId).run();
+    const ip = request.headers.get('cf-connecting-ip')?.slice(0, 45) || null;
+    await db.prepare('INSERT OR IGNORE INTO daily_visitors (day, visitor_id, ip_address, visited_at) VALUES (?, ?, ?, ?)').bind(day, visitorId, ip, new Date().toISOString()).run();
+    await db.prepare('UPDATE daily_visitors SET ip_address = ?, visited_at = ? WHERE day = ? AND visitor_id = ? AND ip_address IS NULL')
+      .bind(ip, new Date().toISOString(), day, visitorId).run();
+    await db.prepare('DELETE FROM daily_visitors WHERE day < ?').bind(new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Seoul', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date(Date.now() - 29 * 86400000))).run();
     const result = await db.prepare('SELECT COUNT(*) AS count FROM daily_visitors WHERE day = ?').bind(day).first<{ count: number }>();
     return Response.json({ day, count: result?.count ?? 0 }, { headers: { 'Cache-Control': 'no-store' } });
   } catch {

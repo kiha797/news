@@ -128,6 +128,7 @@ export default function Home(){
       </div>
       <footer><span className="footer-brand">PHARMA DESK</span><p>기사 제목을 선택하면 해당 언론사의 원문이 열립니다. 기사 저작권은 각 언론사에 있습니다.</p><span>6 SOURCES. ONE DESK.</span></footer>
       <TodayVisitors/>
+      <p className="visitor-privacy-note">방문 통계와 접속 기록 관리를 위해 IP 주소와 방문 시각을 수집하며 30일간 보관합니다.</p>
     </main>
   </div>;
 }
